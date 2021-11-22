@@ -1,0 +1,4 @@
+zasady
+player_1 == x, player_2 == O
+plansza i informacja kto zaczyna i prosba o pozycje X lub O
+jesli player poda dobre koordynaty to wyswietla sie zaktualizowana plansza i program prosi o ruch kolejnego zawodnika, i tak sie dzieje dopoki nie spelni sie warunek win, lose, draw
