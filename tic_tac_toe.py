@@ -1,48 +1,37 @@
-def init_board():
-    """Returns an empty 3-by-3 board (with .)."""
-    board = []
-    return board
-
-
-def get_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
-    row, col = 0, 0
-    return row, col
-
-
-def get_ai_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
-    row, col = 0, 0
-    return row, col
-
-
-def mark(board, player, row, col):
-    """Marks the element at row & col on the board for player."""
-    pass
-
-
-def has_won(board, player):
-    """Returns True if player has won the game."""
-    return False
-
-
-def is_full(board):
-    """Returns True if board is full."""
-    return False
-
-
-def print_board(board):
-    """Prints a 3-by-3 board on the screen with borders."""
-    pass
-
-
-def print_result(winner):
-    """Congratulates winner or proclaims tie (if winner equals zero)."""
-    pass
-
-
 def tictactoe_game(mode='HUMAN-HUMAN'):
-    board = init_board()
+    menu()
+    list = [['A', '.','.','.' ],['B','.','.','.' ],['C', '.','.','.' ]]
+    while True:
+        player1 = "x"
+        player2 = "o"
+        while check_move != True:
+            player1_coordinates = input("Choose coordinates: ")
+            check_move(player1_coordinates) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
+        list = funkcja_podmiany_tablicy(player1, player1_coordinates, list)
+        funkcja_print_tabela(list)
+        if has_won(list) == True:
+            print("X has won!")
+            exit()
+        elif is_full(list) == True:
+            print("it's a tie!")
+            exit()
+        else:
+            pass
+        while check_move != True:
+            player2_coordinates = input("Choose coordinates: ")
+            check_move(player2_coordinates) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
+        list = funkcja_podmiany_tablicy(player2, player2_coordinates, list)
+        funkcja_print_tabela(list)
+        if has_won(list) == True:
+            print("O has won!")
+            exit()
+        elif is_full(list) == True:
+            print("it's a tie!")
+            exit()
+        else:
+            pass
+        
+
 
     # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
     print_board(board)
