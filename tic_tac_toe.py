@@ -1,7 +1,5 @@
 from tabulate import tabulate
 
-
-
 def start():
     logo = """ _   _      _             _             
 | | (_)    | |           | |            
@@ -11,8 +9,6 @@ def start():
  \__|_|\___|\__\__,_|\___|\__\___/ \___|
                                         """
     print(logo)
-    print("\nFirst Player who starts is X, Enjoy & Have Fun! ;) \n")
-
 
 
 def funkcja_podmiany_tablicy(player, player_coordinates, list):
@@ -38,7 +34,7 @@ def funkcja_podmiany_tablicy(player, player_coordinates, list):
     return list
 
 def is_full(list):
-    if "." in list:
+    if list[0].count(".")>0 or list[1].count(".")>0 or list[2].count(".")>0:
         return False
     else:
         return True
@@ -64,76 +60,33 @@ def has_won(list):
         return False
 
 def check_move (list):
-    while True:   
-        player1_coordinates = (input ("choose your coordinates: ").upper())      
-        if player1_coordinates == "QUIT":
-            exit ()
-        elif player1_coordinates == "A1":
-            if list[0][1] == ".":
-                return player1_coordinates 
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates =="A2":
-            if list[0][2] == ".":
-                return player1_coordinates 
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "A3":
-            if list[0][3] == ".":
-                return player1_coordinates 
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "B1":
-            if list[1][1] == ".":
-                return player1_coordinates 
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "B2":
-            if list[1][2] == ".":
-                return player1_coordinates 
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "B3":
-            if list[1][3] == ".":
+        while True: 
+            thisdict = {
+                "A1": list [0][1],
+                "A2": list [0][2],
+                "A3": list [0][3],
+                "B1": list [1][1],
+                "B2": list [1][2],
+                "B3": list [1][3],
+                "C1": list [2][1],
+                "C2": list [2][2],
+                "C3": list [2][3]
+                }
+            player1_coordinates = (input ("choose your coordinates: ").upper())
+            if player1_coordinates == "QUIT":
+                exit ()
+            elif player1_coordinates not in thisdict:
+                print ("The coordinates were entered in the wrong format")
+                continue
+            elif thisdict[player1_coordinates] == ".":
                 return player1_coordinates
             else:
                 print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "C1":
-            if list[2][1] == ".":
-                return player1_coordinates
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "C2":
-            if list[2][2] == ".":
-                return player1_coordinates
-            else:
-                print ("This place is taken!")
-                continue 
-        elif player1_coordinates == "C3":
-            if list[2][3] == ".":
-                return player1_coordinates
-            else:
-                print ("This place is taken!")
-                continue 
-        else:
-            print ("The coordinates were entered in the wrong format")
-            continue    
-
-def drukowanie_listy(list):
-    '''printing table'''
-    head = [" ","1","2","3"]
-    return(tabulate(list, headers=head, tablefmt="fancy_grid"))
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
     start()
     list = [['A', '.','.','.' ],['B','.','.','.' ],['C', '.','.','.' ]]
+    print (drukowanie_listy(list))
     while True:
         player1 = "x"
         player2 = "o"
@@ -150,7 +103,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
             pass
         player_move2 = check_move(list) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
         list = funkcja_podmiany_tablicy(player2, player_move2, list)
-        drukowanie_listy(list)
+        print (drukowanie_listy(list))
         if has_won(list) == True:
             print("O has won!")
             exit()
@@ -162,7 +115,10 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
         
 def main_start():
     tictactoe_game('HUMAN-HUMAN')
-
+def drukowanie_listy(list):
+    '''printing table'''
+    head = [" ","1","2","3"]
+    return(tabulate(list, headers=head, tablefmt="fancy_grid"))
 
 if __name__ == '__main__':
     main_start()
