@@ -27,11 +27,7 @@ list [user_choice] = "X"
 print(tabulate(list, headers=head, tablefmt="fancy_grid"))
 print (user_choice)"""
 
-def has_won():
-    init_board () #import zaktualizowanej listy
-
-list = [['.', '.','.','.'],['.','.','.','.'],['.', '.','.','.'] ]
-
+def has_won(list):
 if ((list [0][1], list [0][2], list [0][3]) == ("x", "x", "x")) or ((list [0][1], list [0][2], list [0][3]) == ("o","o","o")):
     return True 
 elif ((list [1][1], list [1][2], list [1][3]) == ("x", "x", "x")) or ((list [1][1], list [1][2], list [1][3]) == ("o","o","o")):
