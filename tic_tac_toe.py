@@ -38,7 +38,7 @@ def funkcja_podmiany_tablicy(player, player_coordinates, list):
     return list
 
 def is_full(list):
-    if "." in list:
+    if list[0].count(".") > 0 or list[1].count(".") > 0 or list[2].count(".") > 0:
         return False
     else:
         return True
@@ -150,7 +150,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
             pass
         player_move2 = check_move(list) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
         list = funkcja_podmiany_tablicy(player2, player_move2, list)
-        drukowanie_listy(list)
+        print(drukowanie_listy(list))
         if has_won(list) == True:
             print("O has won!")
             exit()
