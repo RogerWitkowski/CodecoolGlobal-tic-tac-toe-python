@@ -1,15 +1,18 @@
-def funkcja_podmiany_tablicy(player, player_move, list):
+def letter_to_number(letter):
+    if letter ==  "A":
+        return 0 
+    elif letter == "B":
+        return 1 
+    elif letter == "C":
+        return 2
+
+def changing_table(player, player_move, list):
     '''changing coordinates'''
     if len(player_move) == 2:
-        for i in range(len(player_move)):
-            if player_move[0] == "A" or "B" or "C":
-                return player_move[0]
-            if player_move[1] == "1" or "2" or "3":
-                return player_move[1]
-    elif():
-        print("Move looks like eg. A1")
-
-
+        row = int(player_move[1])
+        column = letter_to_number(player_move[0])
+        list[column][row] = player
+        return list
 
 
 
