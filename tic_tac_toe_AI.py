@@ -1,4 +1,5 @@
 from tabulate import tabulate
+import random
 
 
 def start():
@@ -52,7 +53,7 @@ def has_won(list):
         return False
 
 def check_move(list):
-    thisdict = {
+    move_dict = {
             "A1": list[0][1],
             "A2": list[0][2],
             "A3": list[0][3],
@@ -67,10 +68,10 @@ def check_move(list):
         player_coordinates = (input("choose your coordinates: ").upper())
         if player_coordinates == "QUIT":
             exit()
-        elif player_coordinates not in thisdict:
+        elif player_coordinates not in move_dict:
             print("The coordinates were entered in the wrong format")
             continue
-        elif thisdict[player_coordinates] == ".":
+        elif move_dict[player_coordinates] == ".":
             return player_coordinates
         else:
             print("This place is taken!")
@@ -94,10 +95,10 @@ def check_result(player, move, list):
     else:
         return None
 
-import random
+
 def check_move_AI(list, possible_AI_move):
     while True:
-        thisdict = {
+        move_dict = {
             "A1": list[0][1],
             "A2": list[0][2],
             "A3": list[0][3],
@@ -109,8 +110,10 @@ def check_move_AI(list, possible_AI_move):
             "C3": list[2][3]
         }
 
-        if thisdict[possible_AI_move] == ".":
+        if move_dict[possible_AI_move] == ".":
             return possible_AI_move
+        else:
+            return None
 
 def getlistCopy(list):
  # Make a duplicate of the list list and return it the duplicate.
@@ -118,8 +121,8 @@ def getlistCopy(list):
     for i in list:
         dupelist.append(i)
     return dupelist
+
 def changing_table_AI(computerLetter, possible_AI_move, copy):
-  
     row = int(possible_AI_move[1])
     column = letter_to_number(possible_AI_move[0])
     copy[column][row] = computerLetter
@@ -141,7 +144,7 @@ def getComputerMove(list, computerLetter):
         playerLetter = 'O'
     else:
         playerLetter = 'X'
-    for i in table:
+    '''for i in table:
         copy = getlistCopy(list)
         if check_move_AI(copy, i):
             changing_table_AI(computerLetter, i, copy)
@@ -152,14 +155,15 @@ def getComputerMove(list, computerLetter):
         if check_move_AI(copy, i):
             changing_table_AI(playerLetter, i, copy)
             if has_won(copy):
-                return i
+                return i'''
+
+    if check_move_AI(list, "B2"):
+        return "B2"
 
     move = chooseRandomMoveFromList(list, ("A1", "A3", "C1", "C3"))
     if move != None:
         return move
 
-    if check_move_AI(list, "B2"):
-        return "B2"
     
     return chooseRandomMoveFromList(list, ["A2", "B1", "B3", "C2"])
 
@@ -186,7 +190,7 @@ def tictactoe_game(mode):
             computerLetter = "X"
             player2 = "O"
             computer_move = getComputerMove(list, computerLetter)
-            check_result (computerLetter, computer_move, list)
+            check_result(computerLetter, computer_move, list)
             player2_move = check_move(list)
             check_result(player2, player2_move, list)
 
