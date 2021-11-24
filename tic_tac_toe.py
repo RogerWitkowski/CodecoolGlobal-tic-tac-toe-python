@@ -10,7 +10,6 @@ def start():
                                         """
     print(logo)
 
-
 def funkcja_podmiany_tablicy(player, player_coordinates, list):
     '''changing coordinates'''
     if player_coordinates == "A1":
@@ -69,25 +68,25 @@ def check_move (list):
                 "C2": list [2][2],
                 "C3": list [2][3]
                 }
-            player1_coordinates = (input ("choose your coordinates: ").upper())
-            if player1_coordinates == "QUIT":
+            player_coordinates = (input ("choose your coordinates: ").upper())
+            if player_coordinates == "QUIT":
                 exit ()
-            elif player1_coordinates not in thisdict:
+            elif player_coordinates not in thisdict:
                 print ("The coordinates were entered in the wrong format")
                 continue
-            elif thisdict[player1_coordinates] == ".":
-                return player1_coordinates
+            elif thisdict[player_coordinates] == ".":
+                return player_coordinates
             else:
                 print ("This place is taken!")
 
-def drukowanie_listy(list):
+def list_print(list):
     '''printing table'''
     head = [" ","1","2","3"]
     return(tabulate(list, headers=head, tablefmt="fancy_grid"))
 
 def check_result(player, move, list):
     list = funkcja_podmiany_tablicy(player, move, list)
-    print(drukowanie_listy(list))
+    print(list_print(list))
     if has_won(list) == True:
         print(f"{player} has won!")
         exit()
@@ -100,14 +99,14 @@ def check_result(player, move, list):
 def tictactoe_game(mode='HUMAN-HUMAN'):
     start()
     list = [['A', '.','.','.' ],['B','.','.','.' ],['C', '.','.','.' ]]
-    print(drukowanie_listy(list))
+    print(list_print(list))
     while True:
         player1 = "x"
         player2 = "o"
         player_move = check_move(list)  #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
-        check_result(player1, player_move, list)
-        player_move2 = check_move(list) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
-        check_result(player2, player_move2, list)
+        check_result(player1, player_move, list) #funckja podmienia index w liscie z "x" lub "o" i drukuje tabele. Sprawdza czy ktos wygral i czy jest jeszcze miejsce.
+        player2_move = check_move(list)
+        check_result(player2, player2_move, list)
         
 def main_start():
     tictactoe_game('HUMAN-HUMAN')
