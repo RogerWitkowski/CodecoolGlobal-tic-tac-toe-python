@@ -34,31 +34,24 @@ def funkcja_podmiany_tablicy(player, player_coordinates, list):
     return list
 
 def is_full(list):
-<<<<<<< HEAD
     if list[0].count(".")>0 or list[1].count(".")>0 or list[2].count(".")>0:
-=======
-    if list[0].count(".") > 0 or list[1].count(".") > 0 or list[2].count(".") > 0:
->>>>>>> ba46f1944cfbcf356d292bed63063ec518ff2958
         return False
     else:
         return True
 
 def has_won(list):
-    if ((list [0][1], list [0][2], list [0][3]) == ("x", "x", "x")) or ((list [0][1], list [0][2], list [0][3]) == ("o","o","o")):
+    for i in range (len(list)):
+        if (list [i][1], list [i][2], list [i][3]) in [("x", "x", "x"),("o","o","o")]:
+            return True
+    for i in range (len(list)):
+        if (list [i][1], list [i][2], list [i][3]) in [("x", "x", "x"),("o","o","o")]:
+            return True
+    for i in range (len(list)):
+        if (list [i][1], list [i][2], list [i][3]) in [("x", "x", "x"),("o","o","o")]:
+            return True
+    if (list [0][1], list [1][2], list [2][3]) in [("x", "x", "x"),("o","o","o")]:
         return True 
-    elif ((list [1][1], list [1][2], list [1][3]) == ("x", "x", "x")) or ((list [1][1], list [1][2], list [1][3]) == ("o","o","o")):
-        return True 
-    elif ((list [2][1], list [2][2], list [2][3]) == ("x", "x", "x")) or ((list [2][1], list [2][2], list [2][3]) == ("o","o","o")):
-        return True 
-    elif ((list [0][1], list [1][1], list [2][1]) == ("x", "x", "x")) or ((list [0][1], list [1][1], list [2][1]) == ("o","o","o")):
-        return True 
-    elif ((list [0][2], list [1][2], list [2][2]) == ("x", "x", "x")) or ((list [0][2], list [1][2], list [2][2]) == ("o","o","o")):
-        return True 
-    elif ((list [0][3], list [1][3], list [2][3]) == ("x", "x", "x")) or ((list [0][3], list [1][3], list [2][3]) == ("o","o","o")):
-        return True 
-    elif ((list [0][1], list [1][2], list [2][3]) == ("x", "x", "x")) or ((list [0][1], list [1][2], list [2][3]) == ("o","o","o")):
-        return True 
-    elif ((list [0][3], list [1][2], list [2][1]) == ("x", "x", "x")) or ((list [0][3], list [1][2], list [2][1]) == ("o","o","o")):
+    elif (list [0][3], list [1][2], list [2][1]) in [("x", "x", "x"),("o","o","o")]:
         return True 
     else:
         return False
@@ -107,11 +100,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
             pass
         player_move2 = check_move(list) #funkcja sprawdza czy koordynaty są zajęte oraz czy nie wychodzą poza tabelę. Zwraca True jeśli jest ok.
         list = funkcja_podmiany_tablicy(player2, player_move2, list)
-<<<<<<< HEAD
         print (drukowanie_listy(list))
-=======
-        print(drukowanie_listy(list))
->>>>>>> ba46f1944cfbcf356d292bed63063ec518ff2958
         if has_won(list) == True:
             print("O has won!")
             exit()
