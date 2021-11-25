@@ -13,6 +13,26 @@ def start():
  \__|_|\___|\__\__,_|\___|\__\___/ \___|
                                         """
     print(logo)
+    print("Game options:")
+    print("X always starts!!!")
+    print("1. Human vs Human")
+    print("2. AI vs Human")
+    print("3. Human vs AI")
+    print("4. AI vs AI")
+
+def choose_option():
+    start()
+    while True:
+        try:
+            option = int(input("Choose game option: "))
+            if option > 4:
+                print("Wrong number, try again!!")
+                option = int(input("Choose game option: "))
+            else:
+                return option
+        except ValueError:
+            print("Game option must be a number! Try again.")
+            continue
 
 
 def letter_to_number(letter):
@@ -169,10 +189,10 @@ def get_computer_move(list, computer_letter):
 
 
 def tictactoe_game(mode):
-    start()
     list = [['A', '.', '.', '.'], ['B', '.', '.', '.'], ['C', '.', '.', '.']]
     print(list_print(list))
-    if mode == 'HUMAN-HUMAN':
+    delay_seconds = 1
+    if mode == 1:
         while True:
             player1 = "X"
             player2 = "O"
@@ -180,37 +200,39 @@ def tictactoe_game(mode):
             check_result(player1, player_move, list)
             player2_move = check_move(list)
             check_result(player2, player2_move, list)
-    elif mode == 'AI-HUMAN':
+    elif mode == 2:
         while True:
             computer_letter = "X"
             player2 = "O"
+            time.sleep(delay_seconds)
             computer_move = get_computer_move(list, computer_letter)
             check_result(computer_letter, computer_move, list)
             player2_move = check_move(list)
             check_result(player2, player2_move, list)
-    elif mode == 'HUMAN-AI':
+    elif mode == 3:
         while True:
-            computer_letter = "X"
-            player2 = "O"
+            computer_letter = "O"
+            player2 = "X"
             player2_move = check_move(list)
             check_result(player2, player2_move, list)
+            time.sleep(delay_seconds)
             computer_move = get_computer_move(list, computer_letter)
             check_result(computer_letter, computer_move, list)
-    elif mode == 'AI-AI':
+    elif mode == 4:
         while True:
-            delay_seconds = 1
             computer_letter = "X"
             computer_letter2 = "O"
+            time.sleep(delay_seconds)
             computer_move = get_computer_move(list, computer_letter)
             check_result(computer_letter, computer_move, list)
             time.sleep(delay_seconds)
             computer_move = get_computer_move(list, computer_letter2)
             check_result(computer_letter2, computer_move, list)
-            time.sleep(delay_seconds)
 
 
 def main_start():
-    tictactoe_game('HUMAN-AI')
+    mode = choose_option()
+    tictactoe_game(mode)
 
 
 if __name__ == '__main__':

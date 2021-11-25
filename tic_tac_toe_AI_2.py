@@ -116,11 +116,10 @@ def check_move_AI(list, possible_AI_move):
             return None
 
 def getlistCopy(list):
- # Make a duplicate of the list list and return it the duplicate.
-    dupelist = []
+    duplicate_list = []
     for i in list:
-        dupelist.append(i)
-    return dupelist
+        duplicate_list.append(i)
+    return duplicate_list
 
 def changing_table_AI(computerLetter, possible_AI_move, copy):
     row = int(possible_AI_move[1])
@@ -146,7 +145,6 @@ def getComputerMove(list, computerLetter):
         playerLetter = 'X'
     for i in table:
         copy = getlistCopy(list)
-        print (copy)
         if check_move_AI(copy, i):
             changing_table_AI(computerLetter, i, copy)
             if has_won(copy):
